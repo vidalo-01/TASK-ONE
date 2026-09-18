@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exit / Pay - Park yako Parking System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<header>
+    <h1>🅿️ Park yako Parking System</h1>
+    <nav>
+        <a href="{{ url_for('dashboard') }}">Dashboard</a>
+        <a href="{{ url_for('checkout_preview') }}">Exit / Pay</a>
+        <a href="{{ url_for('history') }}">History</a>
+    </nav>
+</header>
+<main>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% for category, message in messages %}
+            <div class="flash {{ category }}">{{ message }}</div>
+        {% endfor %}
+    {% endwith %}
+
+    <form class="panel" method="GET" action="{{ url_for('checkout_preview') }}">
+        <h2>Vehicle Exit</h2>
+        <input type="text" name="plate_number" placeholder="Enter number plate" value="{{ plate or '' }}" required>
+        <button type="submit">Look Up</button>
+    </form>
+
+    {% if preview %}
+    <div class="barrier">
+        <p>Plate: <strong>{{ preview.plate_number }}</strong></p>
+        <p>Entry time: {{ preview.entry_time.strftime('%Y-%m-%d %H:%M:%S') }}</p>
+        <p>Duration so far: {{ preview.minutes }} minutes</p>
+        <p>Amount due: <strong>Kshs. {{ preview.fee }}</strong></p>
+        <form method="POST" action="{{ url_for('checkout_confirm') }}">
+            <input type="hidden" name="plate_number" value="{{ preview.plate_number }}">
+            <button type="submit">Confirm Payment &amp; Open Barrier</button>
+        </form>
+    </div>
+    {% endif %}
+</main>
+</body>
+</html>

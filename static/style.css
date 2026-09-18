@@ -1,0 +1,105 @@
+:root {
+    --green: #1ac028;
+    --red: #e7a33c;
+    --dark: #2a4565;
+    --card: #263544;
+    --accent: #f1e20f;
+}
+
+* { box-sizing: border-box; }
+
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: var(--dark);
+    color: #b0c6dc;
+    margin: 0;
+    padding: 0 0 3rem 0;
+}
+
+header {
+    background: #0b0a0a;
+    padding: 1.2rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 3px solid var(--accent);
+}
+
+header h1 { margin: 0; font-size: 1.4rem; }
+header nav a { color: #eef2f6; text-decoration: none; margin-left: 1.2rem; }
+header nav a:hover { color: var(--accent); }
+
+main { max-width: 900px; margin: 2rem auto; padding: 0 1.5rem; }
+
+.summary {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+.summary .box {
+    background: var(--card);
+    padding: 1rem 1.5rem;
+    border-radius: 15px;
+    flex: 1;
+    text-align: center;
+}
+.summary .box .num { font-size: 2rem; font-weight: bold; }
+
+.slot-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+    gap: 10px;
+    margin-bottom: 2rem;
+}
+.slot {
+    padding: 0.8rem 0.3rem;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 0.85rem;
+    color: #fff;
+}
+.slot.available { background: var(--green); }
+.slot.occupied { background: var(--red); }
+.slot small { display: block; font-weight: normal; font-size: 0.7rem; margin-top: 4px; }
+
+form.panel {
+    background: var(--card);
+    padding: 1.2rem;
+    border-radius: 10px;
+    margin-bottom: 1.5rem;
+}
+form.panel h2 { margin-top: 0; font-size: 1.1rem; }
+input[type=text] {
+    padding: 0.6rem;
+    border-radius: 6px;
+    border: none;
+    width: 60%;
+    margin-right: 0.5rem;
+}
+button {
+    padding: 0.6rem 1.2rem;
+    border-radius: 6px;
+    border: none;
+    background: var(--accent);
+    font-weight: bold;
+    cursor: pointer;
+}
+button:hover { opacity: 0.9; }
+
+.flash { padding: 0.8rem 1rem; border-radius: 8px; margin-bottom: 1rem; }
+.flash.success { background: #1e5631; }
+.flash.error { background: #5c1e1e; }
+
+table { width: 100%; border-collapse: collapse; background: var(--card); border-radius: 8px; overflow: hidden; }
+th, td { padding: 0.6rem 0.8rem; text-align: left; border-bottom: 1px solid #33445a; }
+th { background: #c8d2dc; }
+
+.barrier {
+    text-align: center;
+    padding: 2rem;
+    background: var(--card);
+    border-radius: 10px;
+}
+.barrier .status { font-size: 2.5rem; color: var(--green); font-weight: bold; }
+.receipt-row { display: flex; justify-content: space-between; padding: 0.4rem 0; border-bottom: 1px dashed #33445a; }
